@@ -28,7 +28,7 @@ class RecipeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val data = recipeRepository.fetchOrders()
-                mutableUiState.emit(RecipeUiState.Success(data.data.keys.fold("") { acc, value -> acc + "$value" }))
+                mutableUiState.emit(RecipeUiState.Success(data.data.entries.first().value.items.first().name))
             } catch (e: Exception) {
                 mutableUiState.emit(RecipeUiState.Error)
             }
